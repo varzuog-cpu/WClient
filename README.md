@@ -44,7 +44,7 @@ Special thanks to the developers and open‑source projects that inspired this c
 
 ### Visual
 
-* **ESP** - Player and block highlighting with optimized render performance.
+* **ESP** - Player, Nametags and armour highlighting with optimized render performance.
 * **DamageText** - Real‑time damage indicators and tracers.
 * **Smooth Zoom** - Adjustable zoom with smooth interpolation.
 
