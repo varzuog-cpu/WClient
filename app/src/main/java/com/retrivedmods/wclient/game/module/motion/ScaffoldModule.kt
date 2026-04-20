@@ -5,7 +5,7 @@ import com.retrivedmods.wclient.game.Module
 import com.retrivedmods.wclient.game.ModuleCategory
 import org.cloudburstmc.protocol.bedrock.packet.PlayerAuthInputPacket
 
-class ScaffoldModule : Module("scaffold", ModuleCategory.Motion) {
+class ScaffoldModule : Module("Scaffold", ModuleCategory.Motion) {
 
     override fun beforePacketBound(interceptablePacket: InterceptablePacket) {
         if (!isEnabled) return
@@ -16,11 +16,14 @@ class ScaffoldModule : Module("scaffold", ModuleCategory.Motion) {
         val player = session.localPlayer ?: return
         val world = session.world ?: return
 
-        val x = player.position.x.toInt()
-        val y = (player.position.y - 1).toInt()
-        val z = player.position.z.toInt()
+        val pos = player.position
 
-        if (!world.getBlock(x, y, z).isAir) return
+        val x = pos.x.toInt()
+        val y = (pos.y - 1).toInt()
+        val z = pos.z.toInt()
+
+        val blockBelow = world.getBlock(x, y, z)
+        if (!blockBelow.isAir) return
 
         runCatching {
             session.useItem()
