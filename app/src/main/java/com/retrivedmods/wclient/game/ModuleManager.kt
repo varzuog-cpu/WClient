@@ -50,6 +50,7 @@ import com.retrivedmods.wclient.game.module.motion.HighJumpModule
 import com.retrivedmods.wclient.game.module.motion.JetPackModule
 import com.retrivedmods.wclient.game.module.motion.MotionFlyModule
 import com.retrivedmods.wclient.game.module.motion.PlayerTPModule
+import com.retrivedmods.wclient.game.module.motion.ScaffoldModule
 import com.retrivedmods.wclient.game.module.motion.SpeedModule
 import com.retrivedmods.wclient.game.module.motion.SpiderModule
 import com.retrivedmods.wclient.game.module.motion.SprintModule
@@ -109,6 +110,7 @@ object ModuleManager {
             add(PlayerTPModule())
             add(FlyModule())
             add(SpeedModule())
+            add(ScaffoldModule())
             add(AirJumpModule())
             add(NoClipModule())
             add(JetPackModule())
@@ -119,6 +121,7 @@ object ModuleManager {
             add(AntiAFKModule())
             add(SpiderModule())
 
+           
             // Visual
             add(DamageTextModule())
             add(ESPModule())
