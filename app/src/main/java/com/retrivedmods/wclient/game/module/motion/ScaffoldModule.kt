@@ -12,8 +12,8 @@ class ScaffoldModule : Module("Scaffold", ModuleCategory.Motion),
     override fun beforePacketBound(packet: BedrockPacket): Boolean {
         if (!isEnabled) return true
 
-        // Only run on movement/input packets
-        if (packet !is PlayerAuthInputPacket) return true
+        // Ensure correct packet type
+        val input = packet as? PlayerAuthInputPacket ?: return true
 
         val player = session.localPlayer ?: return true
         val world = session.world ?: return true
@@ -21,14 +21,14 @@ class ScaffoldModule : Module("Scaffold", ModuleCategory.Motion),
         val pos = player.position
 
         val x = pos.x.toInt()
-        val y = (pos.y - 1).toInt()
+        val y = pos.y.toInt() - 1
         val z = pos.z.toInt()
 
+        // Safety check
         val blockBelow = world.getBlock(x, y, z)
-
-        // If block already exists, do nothing
         if (!blockBelow.isAir) return true
 
+        // IMPORTANT: avoid assumptions about API behavior
         runCatching {
             session.useItem()
         }
@@ -37,6 +37,6 @@ class ScaffoldModule : Module("Scaffold", ModuleCategory.Motion),
     }
 
     override fun afterPacketBound(packet: BedrockPacket) {
-        // optional cleanup (not needed)
+        // no-op
     }
-}
+    }
